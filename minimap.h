@@ -5,6 +5,7 @@
 #define MINIMAP_H_INCLUDED
 
 #include <SFML/Graphics.hpp>
+#include <vector>
 
 
 
@@ -15,6 +16,9 @@ protected:
 	sf::RectangleShape viewWindow;
 	sf::RectangleShape playerRay;
 	sf::CircleShape viewRay;
+	std::vector <sf::RectangleShape*> walls;
+
+	float moveSpeed;
 
 public:
 	Minimap(sf::RenderWindow& Screen, int map[5][5]);
@@ -24,6 +28,10 @@ public:
 	float getAngle();
 
 	void drawCam();
+
+	void moveCam();
+
+	sf::Vector2f getPos();
 
 };
 

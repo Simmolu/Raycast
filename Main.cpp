@@ -38,8 +38,8 @@ int main() {
 	int worldMap[5][5] = {
 		{1, 1, 1, 1, 1},
 		{1, 0, 0, 0, 1},
+		{1, 0, 0, 1, 1},
 		{1, 0, 0, 0, 1},
-		{1, 0, 1, 0, 1},
 		{1, 1, 1, 1, 1}
 	};
 
@@ -54,13 +54,13 @@ int main() {
 		rayPtr->setPosition((float)i, 240);
 		rayPtr->setFillColor(sf::Color::Green);
 		rays.push_back(rayPtr);
-		std::cout << rayPtr << "\n";
 	}
 
 
 
 	sf::Mouse mickey;
 	int x, y;
+	float currAngle;
 
 	while (mrScreen.isOpen())
 	{
@@ -68,19 +68,19 @@ int main() {
 		
 
 		sf::Vector2i mousePos = mickey.getPosition(mrScreen);
-		x = mousePos.x;
-		y = mousePos.y;
+		x = mappy.getPos().x;
+		y = mappy.getPos().y;
 
 
 		pos.setString("X: " + std::to_string(x) + "\nY: " + std::to_string(y));
 
 
 		while (mrScreen.pollEvent(e))
-		{
-			if (e.type == sf::Event::Closed)
-				mrScreen.close();
+			{
+				if (e.type == sf::Event::Closed)
+					mrScreen.close();
 			
-		}
+			}
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
 			mappy.rotateRays(-0.1);
@@ -90,6 +90,10 @@ int main() {
 			mappy.rotateRays(0.1);
 		}
 
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+			mappy.moveCam();
+		}
+
 		for (auto& ray : rays) {
 			ray->setSize(sf::Vector2f(1.0, mappy.getAngle()));
 			ray->setOrigin(0.5, mappy.getAngle() / 2);
@@ -97,16 +101,16 @@ int main() {
 			mrScreen.draw(*ray);
 		}
 
+
 		mappy.drawCam();
 
-		std::cout << mappy.getAngle() << "\n";
 		mrScreen.draw(pos);
 		
+
 		mrScreen.display();
 	}
 
 	return 0;
-
 }
 
 

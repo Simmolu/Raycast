@@ -47,7 +47,7 @@ Minimap::Minimap(sf::RenderWindow& window, int map[5][5])
 	this->viewRay.setPosition(76, 76);
 
 	std::cout << this->walls.size() << " Walls should be present\n";
-	this->moveSpeed = 0.1;
+	this->moveSpeed = 0.05;
 }
 
 

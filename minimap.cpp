@@ -20,7 +20,7 @@ Minimap::Minimap(sf::RenderWindow& window, int map[5][5])
 				sf::RectangleShape* wallPtr = new sf::RectangleShape(sf::Vector2f(30.0, 30.0));
 				wallPtr->setOrigin(15.0, 15.0);
 				wallPtr->setFillColor(sf::Color::Green);
-				wallPtr->setPosition(15 + (i * 30), 15 + (j * 30));
+				wallPtr->setPosition(15 + (j * 30), 15 + (i * 30));
 				this->walls.push_back(wallPtr);
 			}
 
@@ -73,7 +73,6 @@ void Minimap::drawCam()
 void Minimap::moveCam()
 {
 	float currAngle = playerRay.getRotation();
-	std::cout << "THETA: " << 90 - currAngle << "\n";
 	if ((int)currAngle == 0) {
 		this->playerRay.move(0.0f, moveSpeed);
 		return;

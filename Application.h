@@ -28,7 +28,7 @@ public:
 
 	void drawEverything();
 
-	bool appRun();
+	bool appRun(int map[5][5]);
 
 };
 

@@ -31,7 +31,7 @@ int main() {
 
 	Application app(mrScreen, worldMap);
 
-	while (app.appRun())
+	while (app.appRun(worldMap))
 	{
 		
 	}

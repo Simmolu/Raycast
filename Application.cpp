@@ -12,7 +12,7 @@ Application::Application(sf::RenderWindow& screen, int mappy[5][5])
 	this->position.setCharacterSize(20);
 	this->position.setFillColor(sf::Color::White);
 	this->position.setFont(this->fonty);
-	this->position.setPosition(660, 440);
+	this->position.setPosition(640, 420);
 }
 
 void Application::drawEverything()
@@ -26,7 +26,7 @@ void Application::drawEverything()
 	this->mrScreen.display();
 }
 
-bool Application::appRun() {
+bool Application::appRun(int map[5][5]) {
 	this->mrScreen.clear();
 
 
@@ -49,6 +49,10 @@ bool Application::appRun() {
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
 		this->mapper.moveCam();
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::E)) {
+		std::cout << this->cam.horizontalCollison(this->mapper.getAngle(), this->mapper.getPos(), map) << "\n";
 	}
 
 	drawEverything();

@@ -6,13 +6,14 @@
 #include <math.h>
 #include <vector>
 #include "minimap.h"
+#include <iostream>
 
 
 class Camera {
 
 protected:
 	sf::RenderWindow& screeny;
-	float rayLength;
+	float rayLength, fieldOfView, direction;
 	std::vector <sf::RectangleShape*> rayers;
 
 public:
@@ -20,6 +21,8 @@ public:
 	Camera(sf::RenderWindow& window);
 
 	void drawRays(float angle);
+
+	float horizontalCollison(float angle, sf::Vector2f position, int map[5][5]);
 
 
 };

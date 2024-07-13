@@ -2,17 +2,10 @@
 #include <iostream>
 
 
-Minimap::Minimap(sf::RenderWindow& window, int map[5][5]) 
+Minimap::Minimap(sf::RenderWindow& window, const int map[5][5]) 
 	: mrScreen(window)
 
 {
-	float mapCoords[5][5] = {
-		{15, 45, 75, 105, 135},
-		{15, 45, 75, 105, 135},
-		{15, 45, 75, 105, 135},
-		{15, 45, 75, 105, 135},
-		{15, 45, 75, 105, 135}
-	};
 
 	for (int i = 0; i < 5; i++) {
 		for (int j = 0; j < 5; j++) {
@@ -20,10 +13,20 @@ Minimap::Minimap(sf::RenderWindow& window, int map[5][5])
 				sf::RectangleShape* wallPtr = new sf::RectangleShape(sf::Vector2f(30.0, 30.0));
 				wallPtr->setOrigin(15.0, 15.0);
 				wallPtr->setFillColor(sf::Color::Green);
+				wallPtr->setOutlineColor(sf::Color::White);
+				wallPtr->setOutlineThickness(1.0);
 				wallPtr->setPosition(15 + (j * 30), 15 + (i * 30));
 				this->walls.push_back(wallPtr);
 			}
-
+			else {
+				sf::RectangleShape* wallPtr = new sf::RectangleShape(sf::Vector2f(30.0, 30.0));
+				wallPtr->setOrigin(15.0, 15.0);
+				wallPtr->setFillColor(sf::Color::Black);
+				wallPtr->setOutlineColor(sf::Color::White);
+				wallPtr->setOutlineThickness(1.0);
+				wallPtr->setPosition(15 + (j * 30), 15 + (i * 30));
+				this->walls.push_back(wallPtr);
+			}
 		}
 	}
 
@@ -34,10 +37,11 @@ Minimap::Minimap(sf::RenderWindow& window, int map[5][5])
 	this->viewWindow.setOutlineThickness(1.0);
 	this->viewWindow.setPosition(0, 0);
 
-	this->playerRay = sf::RectangleShape(sf::Vector2f(1, 75));
+	this->playerRay = sf::RectangleShape(sf::Vector2f(1, 50));
 	this->playerRay.setFillColor(sf::Color::White);
 	this->playerRay.setOrigin(0.5, 0);
 	this->playerRay.setPosition(75, 75);
+	//this->playerRay.setRotation(110);
 
 	this->viewRay = sf::CircleShape(50, 3);
 	this->viewRay.setFillColor(sf::Color(255, 255, 255, 1));
@@ -47,6 +51,7 @@ Minimap::Minimap(sf::RenderWindow& window, int map[5][5])
 	this->viewRay.setPosition(76, 76);
 
 	std::cout << this->walls.size() << " Walls should be present\n";
+	std::cout << "Feed the blacks\n";
 	this->moveSpeed = 0.05;
 }
 
@@ -57,7 +62,13 @@ void Minimap::rotateRays(float degrees) {
 }
 
 float Minimap::getAngle() {
-	return this->playerRay.getRotation();
+	float angle = this->playerRay.getRotation() + 90.0f;
+	if (angle > 360.0f)
+		angle = angle - 360.0f;
+
+	angle = static_cast<int>(angle * 10) / 10.0f;
+
+	return angle;
 }
 
 void Minimap::drawCam()
@@ -70,9 +81,17 @@ void Minimap::drawCam()
 	//mrScreen.draw(this->viewRay);
 }
 
-void Minimap::moveCam()
+void Minimap::moveCam(bool back)
 {
 	float currAngle = playerRay.getRotation();
+
+	if (back) {
+		currAngle = currAngle + 180;
+
+		if (currAngle > 360)
+			currAngle = currAngle - 360;
+	}
+
 	if ((int)currAngle == 0) {
 		this->playerRay.move(0.0f, moveSpeed);
 		return;

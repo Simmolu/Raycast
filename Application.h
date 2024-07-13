@@ -20,15 +20,16 @@ protected:
 	Camera cam;
 	float x, y;
 	
-
+private:
+	static const int map[5][5];
 
 public:
 
-	Application(sf::RenderWindow& screen, int map[5][5]);
+	Application(sf::RenderWindow& screen);
 
 	void drawEverything();
 
-	bool appRun(int map[5][5]);
+	bool appRun();
 
 };
 

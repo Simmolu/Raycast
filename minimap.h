@@ -21,7 +21,7 @@ protected:
 	float moveSpeed;
 
 public:
-	Minimap(sf::RenderWindow& Screen, int map[5][5]);
+	Minimap(sf::RenderWindow& Screen, const int map[5][5]);
 
 	void rotateRays(float degrees);
 
@@ -29,7 +29,7 @@ public:
 
 	void drawCam();
 
-	void moveCam();
+	void moveCam(bool back);
 
 	sf::Vector2f getPos();
 

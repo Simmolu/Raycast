@@ -7,6 +7,8 @@
 #include <vector>
 #include "minimap.h"
 #include <iostream>
+#include <Windows.h>
+#include <algorithm>
 
 
 class Camera {
@@ -14,16 +16,17 @@ class Camera {
 protected:
 	sf::RenderWindow& screeny;
 	float rayLength, fieldOfView, direction;
-	std::vector <sf::RectangleShape*> rayers;
+	std::vector <std::unique_ptr<sf::RectangleShape>> rayers;
 
 public:
 
 	Camera(sf::RenderWindow& window);
 
-	void drawRays(float angle);
+	void drawRays(float angle, sf::Vector2f position, const int map [5][5]);
 
-	float horizontalCollison(float angle, sf::Vector2f position, int map[5][5]);
+	float horizontalCollison(float angle, sf::Vector2f position, const int map[5][5]);
 
+	void drawFloor();
 
 };
 

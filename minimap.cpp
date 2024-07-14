@@ -40,8 +40,8 @@ Minimap::Minimap(sf::RenderWindow& window, const int map[5][5])
 	this->playerRay = sf::RectangleShape(sf::Vector2f(1, 50));
 	this->playerRay.setFillColor(sf::Color::White);
 	this->playerRay.setOrigin(0.5, 0);
-	this->playerRay.setPosition(75, 75);
-	//this->playerRay.setRotation(110);
+	this->playerRay.setPosition(45, 45);
+	this->playerRay.setRotation(270);
 
 	this->viewRay = sf::CircleShape(50, 3);
 	this->viewRay.setFillColor(sf::Color(255, 255, 255, 1));
@@ -51,9 +51,9 @@ Minimap::Minimap(sf::RenderWindow& window, const int map[5][5])
 	this->viewRay.setPosition(76, 76);
 
 	std::cout << this->walls.size() << " Walls should be present\n";
-	std::cout << "Feed the blacks\n";
 	this->moveSpeed = 0.05;
 }
+
 
 
 void Minimap::rotateRays(float degrees) {
@@ -78,52 +78,54 @@ void Minimap::drawCam()
 		mrScreen.draw(*wall);
 	}
 	mrScreen.draw(this->playerRay);
-	//mrScreen.draw(this->viewRay);
 }
 
-void Minimap::moveCam(bool back)
+void Minimap::moveCam(bool back, const int map [5][5])
 {
 	float currAngle = playerRay.getRotation();
+	float playersX = playerRay.getPosition().x;	float playersY = playerRay.getPosition().y;
+	int playx, playy;
 
-	if (back) {
+	if (back) { // check if trying to move backwards
 		currAngle = currAngle + 180;
 
 		if (currAngle > 360)
 			currAngle = currAngle - 360;
 	}
 
+
+
 	if ((int)currAngle == 0) {
 		this->playerRay.move(0.0f, moveSpeed);
-		return;
 	}
 	else if ((int)currAngle == 90) {
 		this->playerRay.move(-moveSpeed, 0.0f);
-		return;
 	}
 	else if ((int)currAngle == 180) {
 		this->playerRay.move(0.0f, -moveSpeed);
-		return;
 	}
 	else if ((int)currAngle == 270) {
 		this->playerRay.move(moveSpeed, 0.0f);
-		return;
 	}
 
 	if (currAngle < 90) {
 		this->playerRay.move(-(moveSpeed * (currAngle / 90)), moveSpeed - (moveSpeed * (currAngle / 90)));
-		return;
 	}
 	else if (currAngle > 90 && currAngle < 180) {
 		this->playerRay.move(-moveSpeed + (moveSpeed * ((currAngle-90) / 90)), -(moveSpeed * ((currAngle-90) / 90)));
-		return;
 	}
+
 	else if (currAngle > 180 && currAngle < 270) {
 		this->playerRay.move(moveSpeed * ((currAngle-180) / 90), -moveSpeed + (moveSpeed * ((currAngle-180) / 90)));
-		return;
 	}
+
 	else if (currAngle > 270 && currAngle < 360) {
 		this->playerRay.move(moveSpeed - (moveSpeed * ((currAngle - 270) / 90)), (moveSpeed * ((currAngle - 270) / 90)));
-		return;
+	}
+
+	playx = (int)(playerRay.getPosition().x / 30); playy = (int)(playerRay.getPosition().y / 30); //check for collison, if thru wall then return to original pos
+	if (map[playy][playx] == 1) {
+		this->playerRay.setPosition(playersX, playersY);
 	}
 
 

@@ -4,7 +4,7 @@
 const int Application::map[5][5] = {
 	{1,1,1,1,1},
 	{1,0,0,0,1},
-	{1,0,1,1,1},
+	{1,0,0,1,1},
 	{1,0,0,0,1},
 	{1,1,1,1,1},
 };
@@ -27,10 +27,12 @@ Application::Application(sf::RenderWindow& screen)
 	this->y = 0;
 }
 
+
+
 void Application::drawEverything()
 {
-	this->x = this->mapper.getPos().x;
-	this->y = this->mapper.getPos().y;
+	this->x = (int)(this->mapper.getPos().x / 30);
+	this->y = (int)(this->mapper.getPos().y / 30);
 	
 	
 	this->cam.drawFloor();
@@ -67,15 +69,15 @@ bool Application::appRun() {
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-		this->mapper.moveCam(false);
+		this->mapper.moveCam(false, this->map);
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-		this->mapper.moveCam(true);
+		this->mapper.moveCam(true, this->map);
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::E)) {
-		//std::cout<< this->cam.horizontalCollison(this->mapper.getAngle(), this->mapper.getPos(), this->map) << "\n";
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
+		return false;
 	}
 	drawEverything();
 	

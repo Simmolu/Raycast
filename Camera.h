@@ -15,8 +15,9 @@ class Camera {
 
 protected:
 	sf::RenderWindow& screeny;
-	float rayLength, fieldOfView, direction;
+	float rayLength, fieldOfView, direction, angleStep;
 	std::vector <std::unique_ptr<sf::RectangleShape>> rayers;
+	sf::RectangleShape floor, sky;
 
 public:
 

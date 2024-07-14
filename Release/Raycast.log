@@ -1,0 +1,25 @@
+﻿  Application.cpp
+C:\Users\lsimm\source\repos\Simmolu\Raycast\Application.cpp(34,42): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\lsimm\source\repos\Simmolu\Raycast\Application.cpp(35,42): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\lsimm\source\repos\Simmolu\Raycast\Application.cpp(64,28): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\lsimm\source\repos\Simmolu\Raycast\Application.cpp(68,27): warning C4305: 'argument': truncation from 'double' to 'float'
+  Camera.cpp
+C:\Users\lsimm\source\repos\Simmolu\Raycast\Camera.cpp(100,37): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\lsimm\source\repos\Simmolu\Raycast\Camera.cpp(108,51): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\lsimm\source\repos\Simmolu\Raycast\Camera.cpp(121,51): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\lsimm\source\repos\Simmolu\Raycast\Camera.cpp(130,37): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\lsimm\source\repos\Simmolu\Raycast\Camera.cpp(176,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\lsimm\source\repos\Simmolu\Raycast\Camera.cpp(179,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Main.cpp
+  minimap.cpp
+C:\Users\lsimm\source\repos\Simmolu\Raycast\minimap.cpp(18,44): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\lsimm\source\repos\Simmolu\Raycast\minimap.cpp(18,29): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\lsimm\source\repos\Simmolu\Raycast\minimap.cpp(27,44): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\lsimm\source\repos\Simmolu\Raycast\minimap.cpp(27,29): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\lsimm\source\repos\Simmolu\Raycast\minimap.cpp(54,20): warning C4305: '=': truncation from 'double' to 'float'
+  Generating code
+  0 of 264 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  Raycast.vcxproj -> C:\Users\lsimm\source\repos\Simmolu\Raycast\Release\Raycast.exe

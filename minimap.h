@@ -29,7 +29,7 @@ public:
 
 	void drawCam();
 
-	void moveCam(bool back);
+	void moveCam(bool back, const int map[5][5]);
 
 	sf::Vector2f getPos();
 
